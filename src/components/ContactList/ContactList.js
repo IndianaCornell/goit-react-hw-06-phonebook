@@ -1,9 +1,6 @@
 import { deleteContact } from 'redux/contactsSlice';
 import { ItemsList, StyledItem, DeleteButton } from './ContactList.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-
-const localStorageKey = 'quiz-contacts';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -11,10 +8,7 @@ export const ContactList = () => {
   const contacts = useSelector(state => state.contacts);
 
   const filter = useSelector(state => state.filter);
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(contacts));
-  }, [contacts]);
+  console.log(filter);
 
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
